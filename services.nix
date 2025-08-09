@@ -12,6 +12,7 @@
           ];
           Environment = {
             FTLCONF_dns_upstreams = "1.1.1.1";
+            FTL_CONF_rate_limit = "0/0";
             TZ = "Europe/Berlin";
           };
           Volume = "pihole.volume:/etc/pihole";
