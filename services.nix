@@ -1,60 +1,12 @@
-({pkgs, ...}: {
-  virtualisation.quadlet = {
-    enable = true;
-    containers = {
-      pihole = {
-        containerConfig = {
-          Image = "docker.io/pihole/pihole";
-          PublishPort = [
-            "127.0.0.1:9102:53/tcp"
-            "127.0.0.1:9102:53/udp"
-            "127.0.0.1:9103:80/tcp"
-          ];
-          Environment = {
-            FTLCONF_dns_upstreams = "1.1.1.1";
-            FTL_CONF_rate_limit = "0/0";
-            TZ = "Europe/Berlin";
-          };
-          Volume = "pihole.volume:/etc/pihole";
-        };
-      };
-    };
-    volumes = {
-      pihole.enable = true;
-    };
-  };
+{pkgs, ...}: {
+  imports = [./modules/services/pihole-doh.nix];
 
-  services.doh-proxy-rust = {
+  services.pihole-doh = {
     enable = true;
-    flags = [
-      "-H=pihole.yuustan.space"
-      "-l=127.0.0.1:9101"
-      "-u=127.0.0.1:9102"
-    ];
-  };
-
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    virtualHosts = {
-      "pihole.yuustan.space" = {
-        enableACME = true;
-        forceSSL = true;
-        locations = {
-          "/" = {
-            proxyPass = "http://127.0.0.1:9103";
-          };
-          "/dns-query" = {
-            proxyPass = "http://127.0.0.1:9101";
-            extraConfig = ''
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-            '';
-          };
-        };
-      };
-    };
+    ui_port = "9091";
+    doh_port = "9092";
+    dns_port = "9093";
+    domain = "pihole.yuustan.space";
   };
 
   security.acme = {
@@ -67,4 +19,4 @@
     allowedTCPPorts = [80 443];
     allowedUDPPorts = [80 443];
   };
-})
+}
