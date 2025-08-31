@@ -1,6 +1,4 @@
-{pkgs, ...}: {
-  imports = [./modules/services/pihole-doh.nix];
-
+{...}: {
   services.pihole-doh = {
     enable = true;
     ui_port = "9091";

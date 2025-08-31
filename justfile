@@ -1,4 +1,4 @@
-build:
-	nixos-rebuild build --flake .#yuu --target-host root@yuu --build-host root@yuu --fast
-switch:
-	nixos-rebuild switch --flake .#yuu --target-host root@yuu --build-host root@yuu --fast
+build $host:
+	nixos-rebuild build --flake .#{{host}} --target-host root@{{host}} --build-host root@{{host}} --fast
+switch $host:
+	nixos-rebuild switch --flake .#{{host}} --target-host root@{{host}} --build-host root@{{host}} --fast
