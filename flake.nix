@@ -8,6 +8,10 @@
     url = "github:mirkolenz/quadlet-nix/v1";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  inputs.agenix = {
+    url = "github:ryantm/agenix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = inputs
   : {
@@ -15,7 +19,8 @@
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
-        ./common
+        ./modules/common
+        ./modules/nixos
         ./hosts/yuu
       ];
     };
