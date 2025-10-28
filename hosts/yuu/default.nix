@@ -10,6 +10,7 @@
     ./disk-config.nix
     ./hardware-configuration.nix
     ./services.nix
+    ./config.nix
   ];
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -24,6 +25,11 @@
     pkgs.gitMinimal
     pkgs.helix
     pkgs.hyfetch
+    pkgs.neovim
+    pkgs.tmux
+    pkgs.htop
+    pkgs.wget
+    pkgs.foot.terminfo
   ];
 
   networking.hostName = "yuu";
