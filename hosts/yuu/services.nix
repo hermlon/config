@@ -7,6 +7,8 @@
     domain = "pihole.yuustan.space";
   };
 
+  services.mc-servers.enable = true;
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "hermlon@yuustan.space";
