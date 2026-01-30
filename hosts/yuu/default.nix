@@ -30,6 +30,7 @@
     pkgs.htop
     pkgs.wget
     pkgs.foot.terminfo
+    pkgs.wireguard-tools
   ];
 
   networking.hostName = "yuu";
