@@ -31,6 +31,7 @@
     pkgs.wget
     pkgs.foot.terminfo
     pkgs.wireguard-tools
+    pkgs.deluge
   ];
 
   networking.hostName = "yuu";

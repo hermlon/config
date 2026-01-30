@@ -18,6 +18,17 @@
     dnsIP = "10.64.0.1";
   };
 
+  services.netns-deluge = {
+    enable = true;
+    domain = "deluge.yuustan.space";
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "hermlon@yuustan.space";

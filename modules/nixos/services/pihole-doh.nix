@@ -59,9 +59,6 @@ in {
     };
 
     services.nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
       virtualHosts = {
         "${cfg.domain}" = {
           enableACME = true;
