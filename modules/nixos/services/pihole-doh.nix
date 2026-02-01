@@ -40,7 +40,7 @@ in {
               FTL_CONF_rate_limit = "0/0";
               TZ = "Europe/Berlin";
             };
-            Volume = "pihole.volume:/etc/pihole";
+            Volume = "${config.virtualisation.quadlet.volumes.pihole.ref}:/etc/pihole";
           };
         };
       };

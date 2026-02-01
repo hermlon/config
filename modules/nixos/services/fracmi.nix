@@ -21,6 +21,9 @@ in {
       type = lib.types.path;
       description = "EnvironmentFile for Polaroids";
     };
+    editorDir = lib.mkOption {
+      type = lib.types.path;
+    };
   };
   config = lib.mkIf cfg.enable {
     virtualisation.quadlet = {
@@ -38,6 +41,19 @@ in {
               POLAROIDS_EDIT_URL = "https://${cfg.editorDomain}/#";
             };
             EnvironmentFile = cfg.polaroidsEnvironmentFile;
+          };
+        };
+        fracmi-editor = {
+          containerConfig = {
+            Image = "registry.k8s.io/git-sync/git-sync:v4.2.1";
+            Environment = {
+              GITSYNC_ROOT = "/data";
+              GITSYNC_REPO = "https://github.com/Anomasie/Fractals";
+              GITSYNC_REF = "gh-pages";
+              GITSYNC_PERIOD = "30s";
+            };
+            Volume = "${cfg.editorDir}:/data:rw";
+            User = 0;
           };
         };
       };
@@ -65,6 +81,19 @@ in {
             "/" = {
               proxyPass = "http://127.0.0.1:${cfg.ui_port}";
               proxyWebsockets = true;
+            };
+          };
+        };
+        "${cfg.editorDomain}" = {
+          enableACME = true;
+          forceSSL = true;
+          locations = {
+            "/" = {
+              root = "${cfg.editorDir}/Fractals";
+              extraConfig = ''
+                add_header Cross-Origin-Opener-Policy "same-origin";
+                add_header Cross-Origin-Embedder-Policy "require-corp";
+              '';
             };
           };
         };
