@@ -8,4 +8,5 @@ let
   all = users ++ systems;
 in {
   "mullvad.age".publicKeys = all;
+  "fracmi.age".publicKeys = all;
 }

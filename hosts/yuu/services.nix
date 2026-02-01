@@ -18,6 +18,13 @@
     dnsIP = "10.64.0.1";
   };
 
+  age.secrets.polaroidsEnvironmentFile.file = ../../secrets/fracmi.age;
+  services.fracmi-polaroids = {
+    enable = true;
+    polaroidsEnvironmentFile = config.age.secrets.polaroidsEnvironmentFile.path;
+    ui_port = "9100";
+  };
+
   services.netns-deluge = {
     enable = true;
     domain = "deluge.yuustan.space";
