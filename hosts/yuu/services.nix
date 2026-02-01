@@ -23,6 +23,10 @@
     enable = true;
     polaroidsEnvironmentFile = config.age.secrets.polaroidsEnvironmentFile.path;
     ui_port = "9100";
+    polaroidsDomain = "polaroids.yuustan.space";
+    editorDomain = "editor.yuustan.space";
+    #polaroidsDomain = "gallery.fracmi.cc";
+    #editorDomain = "editor.fracmi.cc";
   };
 
   services.netns-deluge = {

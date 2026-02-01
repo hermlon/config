@@ -8,7 +8,10 @@
 in {
   options.services.fracmi-polaroids = {
     enable = lib.mkEnableOption "Deluge torrent client (bound to a Wireguard VPN network)";
-    domain = lib.mkOption {
+    polaroidsDomain = lib.mkOption {
+      type = lib.types.str;
+    };
+    editorDomain = lib.mkOption {
       type = lib.types.str;
     };
     ui_port = lib.mkOption {
@@ -27,12 +30,12 @@ in {
           containerConfig = {
             Image = config.virtualisation.quadlet.builds.polaroids.ref;
             PublishPort = [
-              "127.0.0.1:${cfg.ui_port}:80/tcp"
+              "127.0.0.1:${cfg.ui_port}:4000/tcp"
+              "127.0.0.1:${cfg.ui_port}:4000/udp"
             ];
             Environment = {
-              #PHX_HOST = "gallery.fracmi.cc";
-              PHX_HOST = "polaroids.yuustan.space";
-              POLAROIDS_EDIT_URL = "https://editor.fracmi.cc/#";
+              PHX_HOST = cfg.polaroidsDomain;
+              POLAROIDS_EDIT_URL = "https://${cfg.editorDomain}/#";
             };
             EnvironmentFile = cfg.polaroidsEnvironmentFile;
           };
@@ -53,18 +56,19 @@ in {
         };
       };
     };
-    #services.nginx = {
-    #  virtualHosts = {
-    #    "${cfg.domain}" = {
-    #      enableACME = true;
-    #      forceSSL = true;
-    #      locations = {
-    #        "/" = {
-    #          proxyPass = "http://127.0.0.1:8112";
-    #        };
-    #      };
-    #    };
-    #  };
-    #};
+    services.nginx = {
+      virtualHosts = {
+        "${cfg.polaroidsDomain}" = {
+          enableACME = true;
+          forceSSL = true;
+          locations = {
+            "/" = {
+              proxyPass = "http://127.0.0.1:${cfg.ui_port}";
+              proxyWebsockets = true;
+            };
+          };
+        };
+      };
+    };
   };
 }
