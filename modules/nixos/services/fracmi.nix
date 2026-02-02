@@ -7,7 +7,7 @@
   cfg = config.services.fracmi-polaroids;
 in {
   options.services.fracmi-polaroids = {
-    enable = lib.mkEnableOption "Deluge torrent client (bound to a Wireguard VPN network)";
+    enable = lib.mkEnableOption "fracmi.cc fractal gallery and editor";
     polaroidsDomain = lib.mkOption {
       type = lib.types.str;
     };
