@@ -155,12 +155,12 @@
         "rev": "ddd6e095f6b030dca99b1f2bbdf10d6c27df1a84",
         "revCount": 57,
         "type": "git",
-        "url": "https://iceshrimp.dev/hermlon/packaging"
+        "url": "https://iceshrimp.dev/iceshrimp/packaging"
       },
       "original": {
         "dir": "iceshrimp-js",
         "type": "git",
-        "url": "https://iceshrimp.dev/hermlon/packaging"
+        "url": "https://iceshrimp.dev/iceshrimp/packaging"
       }
     },
     "nix-minecraft": {

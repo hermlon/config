@@ -17,7 +17,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
   inputs.iceshrimp = {
-    url = "git+https://iceshrimp.dev/hermlon/packaging?dir=iceshrimp-js";
+    url = "git+https://iceshrimp.dev/iceshrimp/packaging?dir=iceshrimp-js";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
