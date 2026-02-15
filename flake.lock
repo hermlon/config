@@ -141,6 +141,28 @@
         "type": "github"
       }
     },
+    "iceshrimp": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "iceshrimp-js",
+        "lastModified": 1771176243,
+        "narHash": "sha256-CCFuzfRfVSB1NvJFzYeY5apoMQGx8a1ZMHBP74aJLT4=",
+        "ref": "refs/heads/dev",
+        "rev": "ddd6e095f6b030dca99b1f2bbdf10d6c27df1a84",
+        "revCount": 57,
+        "type": "git",
+        "url": "https://iceshrimp.dev/hermlon/packaging"
+      },
+      "original": {
+        "dir": "iceshrimp-js",
+        "type": "git",
+        "url": "https://iceshrimp.dev/hermlon/packaging"
+      }
+    },
     "nix-minecraft": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -205,6 +227,7 @@
       "inputs": {
         "agenix": "agenix",
         "disko": "disko",
+        "iceshrimp": "iceshrimp",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs",
         "quadlet-nix": "quadlet-nix"

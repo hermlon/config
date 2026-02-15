@@ -9,4 +9,6 @@ let
 in {
   "mullvad.age".publicKeys = all;
   "fracmi.age".publicKeys = all;
+  "iceshrimp_db_password.age".publicKeys = all;
+  "iceshrimp_config.age".publicKeys = all;
 }

@@ -16,11 +16,14 @@
     url = "github:Infinidoge/nix-minecraft";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  inputs.iceshrimp = {
+    url = "git+https://iceshrimp.dev/hermlon/packaging?dir=iceshrimp-js";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = inputs
   : {
     nixosConfigurations.yuu = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
         ./modules/common

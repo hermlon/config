@@ -5,6 +5,7 @@
 }: {
   imports = [
     inputs.agenix.nixosModules.default
+    inputs.iceshrimp.nixosModules.iceshrimp
   ];
 
   nix.package = pkgs.lixPackageSets.stable.lix;

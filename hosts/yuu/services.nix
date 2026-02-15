@@ -18,6 +18,28 @@
     dnsIP = "10.64.0.1";
   };
 
+  age.secrets.iceshrimpDbPassword = {
+    file = ../../secrets/iceshrimp_db_password.age;
+    owner = "postgres";
+    group = "postgres";
+  };
+  age.secrets.iceshrimpConfig = {
+    file = ../../secrets/iceshrimp_config.age;
+    owner = config.services.iceshrimp.user;
+    group = config.services.iceshrimp.group;
+  };
+  services.iceshrimp = {
+    enable = true;
+    settings.url = "https://yuustan.space";
+    configureNginx = {
+      enable = true;
+    };
+    createDb = true;
+    dbPasswordFile = config.age.secrets.iceshrimpDbPassword.path;
+    secretConfig = config.age.secrets.iceshrimpConfig.path;
+    settings.db.host = "/run/postgresql";
+  };
+
   age.secrets.polaroidsEnvironmentFile.file = ../../secrets/fracmi.age;
   services.fracmi-polaroids = {
     enable = true;
